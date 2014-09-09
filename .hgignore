@@ -1,0 +1,6 @@
+syntax: glob
+websharper.pouchdb/bin/*
+websharper.pouchdb/obj/*
+build/*
+packages/*
+*.suo

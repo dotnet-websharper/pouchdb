@@ -45,19 +45,6 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
-  <ItemGroup>
-    <Compile Include="Main.fs" />
-    <EmbeddedResource Include="pouchdb.min.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="..\packages\WebSharper.2.5.124.61\build\WebSharper.targets" Condition="Exists('..\packages\WebSharper.2.5.124.61\build\WebSharper.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -65,4 +52,17 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\WebSharper.2.5.124.61\build\WebSharper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WebSharper.2.5.124.61\build\WebSharper.targets'))" />
   </Target>
+  <ItemGroup>
+    <Compile Include="Main.fs" />
+    <EmbeddedResource Include="pouchdb.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+  </ItemGroup>
 </Project>

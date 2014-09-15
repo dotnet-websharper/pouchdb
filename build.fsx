@@ -9,7 +9,7 @@ let bt =
 let main =
     (bt.WebSharper.Extension("IntelliFactory.WebSharper.PouchDB")
     |> FSharpConfig.BaseDir.Custom "websharper.pouchdb")
-        .Embed(["pouchdb.min.js"])
+        .Embed(["pouchdb.min.js"; "lie.min.js"])
         .SourcesFromProject("websharper.pouchdb.fsproj")
 
 (*let test =

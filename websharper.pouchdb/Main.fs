@@ -4,6 +4,7 @@ open IntelliFactory.WebSharper.InterfaceGenerator
 
 module Definition =
 
+
     let O = T<unit>
     let Err = T<exn>
     let Blob = T<IntelliFactory.WebSharper.Html5.Blob>
@@ -446,11 +447,18 @@ module Definition =
             |> WithComment "Sync data from src to target and target to src. This is a convenience method for bidirectional data replication."
         ]
 
+    module Res = 
+        let Lie = 
+            Resource "Lie" "lie.min.js"
+        let Pouch = 
+            (Resource "PouchDB" "pouchdb.min.js").AssemblyWide()
+            |> Requires [Lie]
 
     let Assembly =
         Assembly [
             Namespace "IntelliFactory.WebSharper.PouchDB.Resources" [
-                (Resource "Js" "pouchdb.min.js").AssemblyWide()
+                Res.Lie
+                Res.Pouch
             ]
             Namespace "IntelliFactory.WebSharper.PouchDB" [
                Generic - Promise

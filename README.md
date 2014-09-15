@@ -2,11 +2,11 @@
 
 PouchDB is a client-side JavaScript library for dealing with CouchDB. That means anyone can create a local instance which – depending on the adapter – will store the data in IndexedDB or Web SQL. It can then be seamlessly synchronized with remote CouchDB databases.
 
-# PouchDB in WebSharper
+# PouchDB with WebSharper
 
 ## Static typing
 
-This extension provides statically typed bindings for the PouchDB library. An example of this the constructor ``PouchDB<T>()``. The semantics of this notation do not fully conform to that of its JavaScript counterpart. CouchDB – and therefore PouchDB – is a schemaless database meaning that you can store very different objects in it. In JS this is perfectly natural because of the dynamic typesystem. If you would like to treat your database the same you can use ``PouchDB<obj>()`` to get the job done but if you'd like additionaly type safety you should use the type-paramterized constructor. If you need to deal with different types consider using F#'s union types.
+This extension provides statically typed bindings for the PouchDB library. An example of this the constructor ``PouchDB<T>()``. The semantics of this notation do not fully conform to that of its JavaScript counterpart. CouchDB – and therefore PouchDB – is a schemaless database meaning that you can store very different objects in it. In JS this is perfectly natural because of the dynamic typesystem but in F# this would get really annyoing. If you would like to treat your database the same you can use ``PouchDB<obj>()`` to get the job done but if you'd like additional type safety you should use the type-paramterized constructor. If you need to deal with different types consider using F#'s union types. The database stores its content as simple JSON objects so your use case can differ from this single type approach and obviously you cannot use union types to couple very disperate types of objects. Unfortunately in this case the type system cannot aid you; the only thing you can do is to store ``objs`` in the DB.
 
 ```fsharp
 	type Fruit =
@@ -14,14 +14,14 @@ This extension provides statically typed bindings for the PouchDB library. An ex
 		| Orange
 		| Other of string
 
-	let db = new PouchDB<Fruit>("fruitdb")
+	let db = new PouchDB<Fruit>("fruitdb")	
 ```
 
 Now you have a database instance that stores objects of type ``Fruit``. Please be aware that this is purely static and is only present at compile time. Nothing guarantees that objects from different sources (e.g. JavaScript code) cannot be added to the same database.
 
 ## Querying
 
-PouchDB uses the MapReduce model for querying databases. This obviously doesn't make much sense when dealing with inmemory instances but as mentioned above you can connect to remote CouchDB databases in which case the map and reduce functions will be run remotely, meaning that the code you write in JavaScript will be sent as text to the server for processing. The querying part of this binding also aims to be type safe but due to some quirks in WebSharper the resulting interface may not be very intuitive. Let's take a look at an example using the code above as basis.
+PouchDB uses the ``MapReduce`` model for querying databases. This clearly doesn't make much sense when dealing with in memory instances in a single threaded language but as mentioned above you can connect to remote CouchDB databases in which case the map and reduce functions will be run remotely, meaning that the code you write in JavaScript will be sent as text to the server for processing. The querying part of this binding also aims to be type safe but due to some quirks in WebSharper the resulting interface may not be very intuitive or appealing. Let's take a look at an example using the code above as basis.
 
 We have the following types we want to store in the database:
 
@@ -42,7 +42,7 @@ We have the following types we want to store in the database:
 	let mkJuice q k = { Quantity = q; Kind = k }
 ```
 
-Let's load some default data into the database (the ``FillDefault`` function only adds objexts if the database is empty):
+Let's load some default data into the database (the ``FillDefault`` function only adds objects if the database is empty):
 
 ```fsharp
     let uncurry f (a,b) = f a b

@@ -18,7 +18,8 @@ module Definition =
             |+> Protocol [
                 Generic - fun U ->
                     "then" => (S ^-> U)?onFulfilled * !? (Err ^-> U)?onRejected ^-> self.[U]
-                "catch" => (Err ^-> S)
+                Generic - fun U ->
+                    "catch" => (Err ^-> U)?onRejected ^-> self.[U]
             ]
         |=> self
 
@@ -30,9 +31,9 @@ module Definition =
             Generic - fun S ->
                 "reject" => T<string>?reason ^-> Promise S
             Generic - fun S ->
-                "all" => Type.ArrayOf(S) ^-> Promise (Type.ArrayOf(S))
+                "all" => Type.ArrayOf(Promise S) ^-> Promise (Type.ArrayOf(S))
             Generic - fun S ->
-                "race" => Type.ArrayOf(S) ^-> Promise S
+                "race" => Type.ArrayOf(Promise S) ^-> Promise S
         ]
 
     let PouchAdapter =

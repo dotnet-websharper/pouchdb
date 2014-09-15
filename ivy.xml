@@ -2,6 +2,5 @@
   <info organisation="IntelliFactory" module="websharper.pouchdb" revision="2.5" />
   <dependencies>
     <dependency name="WebSharper" rev="latest.integration" />
-    <dependency name="WebSharper.WebRTC" rev="latest.integration" />
   </dependencies>
 </ivy-module>

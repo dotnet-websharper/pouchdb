@@ -96,7 +96,7 @@ And finally we can combine them:
 
 which yields this object:
 
-```json
+```javascript
 {
 	key: null,
 	value: {

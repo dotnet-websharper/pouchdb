@@ -2,7 +2,7 @@
 open IntelliFactory.Build
 
 let bt =
-    (BuildTool().PackageId("WebSharper.PouchDB", "2.5")
+    (BuildTool().PackageId("WebSharper.PouchDB", "3.0-alpha")
     |> fun bt -> bt.WithFramework(bt.Framework.Net40))
 
 

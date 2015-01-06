@@ -1,5 +1,6 @@
 namespace websharper.pouchdb
 
+open IntelliFactory.WebSharper
 open IntelliFactory.WebSharper.InterfaceGenerator
 
 module Definition =
@@ -7,7 +8,7 @@ module Definition =
 
     let O = T<unit>
     let Err = T<exn>
-    let Blob = T<IntelliFactory.WebSharper.Html5.Blob>
+    let Blob = T<JavaScript.Blob>
 
     let Promise =
         let self = Type.New()
@@ -183,7 +184,7 @@ module Definition =
                         "live", T<bool>
                         "limit", T<int>
                         "style", T<string>
-                        "view", T<IntelliFactory.WebSharper.EcmaScript.Function>
+                        "view", T<JavaScript.Function>
                         "returnDocs", T<bool>
                         "batch_size", T<int>
                     ]
@@ -215,8 +216,8 @@ module Definition =
             "errors" =? Type.ArrayOf(T<exn>)
             "last_seq" =? T<int>
             "ok" =? T<bool>
-            "start_time" =? T<IntelliFactory.WebSharper.EcmaScript.Date>
-            "end_time" =? T<IntelliFactory.WebSharper.EcmaScript.Date>
+            "start_time" =? T<JavaScript.Date>
+            "end_time" =? T<JavaScript.Date>
             "status" =? T<string>
         ]
 

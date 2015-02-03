@@ -160,11 +160,11 @@ module Definition =
             Class "EventEmitter"
             |=> self
             |+> Instance [
-                "on" => E?event * (S ^-> O)?callback ^-> self.[S]
-                "on" => (Err ^-> O)?callback ^-> self.[S]
+                "on" => E?event * (S ^-> O)?callback ^-> self.[S, E]
+                "on" => (Err ^-> O)?callback ^-> self.[S, E]
 
-                "once" => E?event * (S ^-> O)?callback ^-> self.[S]
-                "once" => (Err ^-> O)?callback ^-> self.[S]
+                "once" => E?event * (S ^-> O)?callback ^-> self.[S, E]
+                "once" => (Err ^-> O)?callback ^-> self.[S, E]
                 
                 "cancel" => O ^-> O
             ]

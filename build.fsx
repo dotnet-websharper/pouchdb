@@ -7,13 +7,12 @@ let bt =
 
 
 let main =
-    (bt.WebSharper.Extension("IntelliFactory.WebSharper.PouchDB")
-    |> FSharpConfig.BaseDir.Custom "websharper.pouchdb")
+    bt.WebSharper.Extension("WebSharper.PouchDB")
         .Embed(["pouchdb.min.js"; "lie.min.js"])
-        .SourcesFromProject("websharper.pouchdb.fsproj")
+        .SourcesFromProject()
 
 (*let test =
-    (bt.WebSharper.BundleWebsite("IntelliFactory.WebSharper.PouchDB.Tests")
+    (bt.WebSharper.BundleWebsite("WebSharper.PouchDB.Tests")
     |> FSharpConfig.BaseDir.Custom "Tests")
         .SourcesFromProject("Tests.fsproj")
         .References(fun r -> [r.Project main])*)

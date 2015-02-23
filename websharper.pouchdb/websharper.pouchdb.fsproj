@@ -6,9 +6,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{d60d48d2-568a-4d15-9b72-9221bf76c079}</ProjectGuid>
     <WebSharperProject>InterfaceGenerator</WebSharperProject>
-    <Name>websharper.pouchdb</Name>
-    <RootNamespace>websharper.pouchdb</RootNamespace>
-    <AssemblyName>websharper.pouchdb</AssemblyName>
+    <Name>WebSharper.PouchDB</Name>
+    <RootNamespace>$(Name)</RootNamespace>
+    <AssemblyName>$(Name)</AssemblyName>
     <NuGetPackageImportStamp>b9519e63</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -45,23 +45,10 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
-  <Import Project="..\packages\WebSharper.2.5.125.62\build\WebSharper.targets" Condition="Exists('..\packages\WebSharper.2.5.125.62\build\WebSharper.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\WebSharper.2.5.125.62\build\WebSharper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WebSharper.2.5.125.62\build\WebSharper.targets'))" />
-  </Target>
+  <Import Project="../build/net40/$(Name).proj" />
   <ItemGroup>
     <Compile Include="Main.fs" />
     <EmbeddedResource Include="pouchdb.min.js" />
-    <None Include="packages.config" />
     <EmbeddedResource Include="lie.min.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
   </ItemGroup>
 </Project>

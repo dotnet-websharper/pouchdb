@@ -1,7 +1,7 @@
-namespace websharper.pouchdb
+namespace WebSharper.PouchDB
 
-open IntelliFactory.WebSharper
-open IntelliFactory.WebSharper.InterfaceGenerator
+open WebSharper
+open WebSharper.InterfaceGenerator
 
 module Definition =
 
@@ -457,11 +457,11 @@ module Definition =
 
     let Assembly =
         Assembly [
-            Namespace "IntelliFactory.WebSharper.PouchDB.Resources" [
+            Namespace "WebSharper.PouchDB.Resources" [
                 Res.Lie
                 Res.Pouch
             ]
-            Namespace "IntelliFactory.WebSharper.PouchDB" [
+            Namespace "WebSharper.PouchDB" [
                Promise
                StaticPromise
                PouchAdapter
@@ -499,7 +499,7 @@ module Definition =
             ]
         ]
 
-open IntelliFactory.WebSharper.InterfaceGenerator
+open WebSharper.InterfaceGenerator
 
 [<Sealed>]
 type Extension() =

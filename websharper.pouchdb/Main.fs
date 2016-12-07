@@ -5,6 +5,12 @@ open WebSharper.InterfaceGenerator
 
 module Definition =
 
+#if ZAFIR
+#else
+    let (--) (x: GenericHelper) (y: _ -> _ -> #CodeModel.Entity) = x - y 
+    let (---) (x: GenericHelper) (y: _ -> _ -> _ -> #CodeModel.Entity) = x - y 
+    let (----) (x: GenericHelper) (y: _ -> _ -> _ -> _ -> #CodeModel.Entity) = x - y 
+#endif
 
     let O = T<unit>
     let Err = T<exn>
@@ -156,7 +162,7 @@ module Definition =
     let EventEmitter =
         let self = Type.New()
 
-        Generic - fun S E ->
+        Generic -- fun S E ->
             Class "EventEmitter"
             |=> self
             |+> Instance [
@@ -261,7 +267,7 @@ module Definition =
                 }
 
     let Emitter =
-        Generic - fun K V ->
+        Generic -- fun K V ->
             Class "Emitter"
             |+> Instance [
                 "call" => K?key * V?value ^-> O
@@ -269,7 +275,7 @@ module Definition =
             ]
 
     let MapReduce =
-        Generic - fun K V D R ->
+        Generic ---- fun K V D R ->
             Pattern.Config "MapReduce"
                 {
                     Required = 
@@ -281,7 +287,7 @@ module Definition =
                 }
 
     let Row =
-        Generic - fun K V ->
+        Generic -- fun K V ->
             Class "Row"
             |+> Instance [
                 "id" =? T<string>
@@ -290,7 +296,7 @@ module Definition =
             ]
 
     let QueryResponse =
-        Generic - fun K V ->
+        Generic -- fun K V ->
             Class "QueryResponse"
             |+> Instance [
                 "offset" =? T<int>
@@ -403,19 +409,19 @@ module Definition =
                 "removeAttachment" => T<string>?docId * T<string>?attachmentId * T<string>?rev * (Callback PutResponse)?callback ^-> O
                 |> WithComment "Delete an attachment from a doc."
 
-                Generic - fun (K: CodeModel.TypeParameter) (V: CodeModel.TypeParameter) ->
+                Generic -- fun (K: CodeModel.TypeParameter) (V: CodeModel.TypeParameter) ->
                     "query" => (S * Emitter.[K, V] ^-> O)?``fun`` * !? QueryCfg.[K]?options ^-> Promise.[QueryResponse.[K, V]]
                     |> WithComment "Retrieves a view, which allows you to perform more complex queries on PouchDB. "
 
-                Generic - fun (K: CodeModel.TypeParameter) (V: CodeModel.TypeParameter) ->
+                Generic -- fun (K: CodeModel.TypeParameter) (V: CodeModel.TypeParameter) ->
                     "query" => (S * Emitter.[K, V] ^-> O)?``fun`` * !? QueryCfg.[K]?options * (Callback QueryResponse.[K, V])?callback ^-> O
                     |> WithComment "Retrieves a view, which allows you to perform more complex queries on PouchDB. "
 
-                Generic - fun (K: CodeModel.TypeParameter) (V: CodeModel.TypeParameter) (R: CodeModel.TypeParameter) ->
+                Generic --- fun (K: CodeModel.TypeParameter) (V: CodeModel.TypeParameter) (R: CodeModel.TypeParameter) ->
                     "query" => MapReduce.[K, V, S, R] * !? QueryCfg.[K]?options ^-> Promise.[ReducedResponse.[R]]
                     |> WithComment "Retrieves a view, which allows you to perform more complex queries on PouchDB. "
 
-                Generic - fun (K: CodeModel.TypeParameter) (V: CodeModel.TypeParameter) (R: CodeModel.TypeParameter) ->
+                Generic --- fun (K: CodeModel.TypeParameter) (V: CodeModel.TypeParameter) (R: CodeModel.TypeParameter) ->
                     "query" => MapReduce.[K, V, S, R] * !? QueryCfg.[K]?options * (Callback ReducedResponse.[R])?callback ^-> O
                     |> WithComment "Retrieves a view, which allows you to perform more complex queries on PouchDB. "
 

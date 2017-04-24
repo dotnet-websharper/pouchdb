@@ -7,9 +7,9 @@ module Definition =
 
 #if ZAFIR
 #else
-    let (--) (x: GenericHelper) (y: _ -> _ -> #CodeModel.Entity) = x - y 
-    let (---) (x: GenericHelper) (y: _ -> _ -> _ -> #CodeModel.Entity) = x - y 
-    let (----) (x: GenericHelper) (y: _ -> _ -> _ -> _ -> #CodeModel.Entity) = x - y 
+    let inline (--) x y = x - y
+    let inline (---) x y = x - y
+    let inline (----) x y = x - y
 #endif
 
     let O = T<unit>

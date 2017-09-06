@@ -2,13 +2,13 @@
 open IntelliFactory.Build
 
 let bt =
-    BuildTool().PackageId("Zafir.PouchDB")
-        .VersionFrom("Zafir")
+    BuildTool().PackageId("WebSharper.PouchDB")
+        .VersionFrom("WebSharper")
         .WithFramework(fun fw -> fw.Net40)
 
 
 let main =
-    bt.Zafir.Extension("WebSharper.PouchDB")
+    bt.WebSharper4.Extension("WebSharper.PouchDB")
         .Embed(["pouchdb.min.js"; "lie.min.js"])
         .SourcesFromProject()
 
@@ -25,10 +25,10 @@ bt.Solution [
     bt.NuGet.CreatePackage()
         .Configure(fun c ->
             { c with
-                Title = Some "Zafir.PouchDB"
+                Title = Some "WebSharper.PouchDB"
                 LicenseUrl = Some "http://websharper.com/licensing"
                 ProjectUrl = Some "https://bitbucket.org/intellifactory/websharper.pouchdb"
-                Description = "Zafir Extensions for PouchDB"
+                Description = "WebSharper Extensions for PouchDB"
                 Authors = ["IntelliFactory"]
                 RequiresLicenseAcceptance = true })
         .Add(main)

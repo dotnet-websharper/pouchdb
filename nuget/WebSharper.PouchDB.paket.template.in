@@ -1,0 +1,17 @@
+type file
+id WebSharper.PouchDB
+authors
+    IntelliFactory
+owners
+    IntelliFactory
+licenseUrl http://websharper.com/licensing
+projectUrl https://bitbucket.org/intellifactory/websharper.pouchdb
+description
+    WebSharper Extensions for PouchDB
+tags
+    Web JavaScript F# C#
+files
+    ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.dll ==> lib/netstandard2.0
+    ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.xml ==> lib/netstandard2.0
+dependencies
+        WebSharper ~> LOCKEDVERSION/3

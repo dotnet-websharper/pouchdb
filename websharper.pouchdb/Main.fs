@@ -5,13 +5,6 @@ open WebSharper.InterfaceGenerator
 
 module Definition =
 
-#if ZAFIR
-#else
-    let inline (--) x y = x - y
-    let inline (---) x y = x - y
-    let inline (----) x y = x - y
-#endif
-
     let O = T<unit>
     let Err = T<exn>
     let Blob = T<JavaScript.Blob>

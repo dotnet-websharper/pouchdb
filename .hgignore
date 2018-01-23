@@ -1,6 +1,10 @@
 syntax: glob
-websharper.pouchdb/bin/*
-websharper.pouchdb/obj/*
+bin/
+obj/
 build/*
 packages/*
 *.suo
+.fake/
+paket-files/
+.vscode/
+nuget/*.paket.template

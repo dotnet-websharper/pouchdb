@@ -16,4 +16,4 @@ files
     ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.dll ==> lib/netstandard2.0
     ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.xml ==> lib/netstandard2.0
 dependencies
-        WebSharper ~> LOCKEDVERSION/3
+        WebSharper ~> LOCKEDVERSION:[3]

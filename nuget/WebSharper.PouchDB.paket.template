@@ -11,9 +11,8 @@ description
 tags
     Web JavaScript F# C#
 files
-    ../WebSharper.PouchDB/bin/Release/net461/WebSharper.PouchDB.dll ==> lib/net461
-    ../WebSharper.PouchDB/bin/Release/net461/WebSharper.PouchDB.xml ==> lib/net461
     ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.dll ==> lib/netstandard2.0
     ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.xml ==> lib/netstandard2.0
 dependencies
-        WebSharper ~> LOCKEDVERSION:[3]
+    framework: netstandard2.0
+            WebSharper ~> LOCKEDVERSION:[3]

@@ -15,7 +15,6 @@ tags
     Web JavaScript F# C# PouchDB CouchDB IndexedDB database replication
 files
     ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.dll ==> lib/netstandard2.0
-    ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.websharper ==> lib/netstandard2.0
     ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.xml ==> lib/netstandard2.0
 dependencies
         WebSharper ~> LOCKEDVERSION:[3]

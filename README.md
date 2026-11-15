@@ -322,13 +322,13 @@ dotnet build WebSharper.PouchDB.Sample/WebSharper.PouchDB.Sample.fsproj -c Relea
 WSPackageFolder=/tmp/pkg dotnet fsi ./build.fsx -t WS-Package
 ```
 
-The package contains `WebSharper.PouchDB.dll`, its `.xml` documentation and the
-WebSharper 11 `.websharper` metadata sidecar.
+The package contains `WebSharper.PouchDB.dll` and its `.xml` documentation.
+WebSharper 10 embeds the binding metadata in the assembly itself.
 
 ## Deployment
 
-`.github/workflows/ghpages.yml` builds the sample in Release on `.NET 11`
-(preview) and publishes `dist/` to GitHub Pages on every push to `main`. The
+`.github/workflows/ghpages.yml` builds the sample in Release on `.NET 10` and
+publishes `dist/` to GitHub Pages on every push to `main`. The
 screenshot in `docs/sample.png` is a real capture of that build.
 
 ## Repository layout

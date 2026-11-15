@@ -59,6 +59,7 @@ jobs:
         run: dotnet build WebSharper.PouchDB.Sample/WebSharper.PouchDB.Sample.fsproj --configuration Release
 
       - name: Deploy 🚀
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

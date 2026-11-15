@@ -1,9 +1,24 @@
-syntax: glob
-bin/
-obj/
-build/*
-packages/*
+# .NET
 *.suo
-.fake/
-paket-files/
+*.user
+.vs/
+.idea/
 .vscode/
+*/bin/
+*/obj/
+websharper.log
+*/websharper.log
+
+# Node / bundling
+node_modules/
+*/node_modules/
+
+# WebSharper, FAKE and esbuild output
+/build/
+*/build/
+dist/
+*/wwwroot/Content/
+
+# Paket: keep .config/ and .paket/ tracked
+/packages/
+/paket-files/

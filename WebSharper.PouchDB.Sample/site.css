@@ -1,0 +1,220 @@
+:root {
+    color-scheme: light;
+    --bg: #f7f8fa;
+    --bg-alt: #ffffff;
+    --bg-code: #f1f3f7;
+    --fg: #1b2330;
+    --fg-muted: #5a6478;
+    --border: #e0e4ec;
+    --accent: #0f766e;
+    --accent-fg: #ffffff;
+    --accent-soft: #e6f3f1;
+    --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.06);
+    --ok: #0f7a5a;
+    --bad: #b42318;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #101317;
+    --bg-alt: #171b21;
+    --bg-code: #1e232b;
+    --fg: #e9ecf1;
+    --fg-muted: #a2abba;
+    --border: #2a303a;
+    --accent: #4fd1c5;
+    --accent-fg: #10201f;
+    --accent-soft: #1d2b2c;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --ok: #4ade9f;
+    --bad: #ff8a80;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+a {
+    color: var(--accent);
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1.25rem clamp(1rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
+}
+
+.app-titles h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+}
+
+.app-titles p {
+    margin: 0.2rem 0 0;
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+}
+
+.app-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.app-source {
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+}
+
+.page {
+    display: grid;
+    gap: 1rem;
+    padding: 1.25rem clamp(1rem, 4vw, 3rem) 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.status {
+    margin: 0;
+    padding: 0.6rem 0.9rem;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-size: 0.95rem;
+    min-height: 2.6rem;
+}
+
+.card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem 1.25rem;
+    box-shadow: var(--shadow);
+}
+
+.card-header h2 {
+    margin: 0 0 0.35rem;
+    font-size: 1.1rem;
+}
+
+.card-header p {
+    margin: 0 0 0.9rem;
+    color: var(--fg-muted);
+    font-size: 0.92rem;
+}
+
+code {
+    background: var(--bg-code);
+    border-radius: 5px;
+    padding: 0.05rem 0.3rem;
+    font-size: 0.88em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.btn {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--fg);
+    border-radius: 9px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-fg);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    color: var(--accent-fg);
+}
+
+.input {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--fg);
+    border-radius: 9px;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.9rem;
+    min-width: 14rem;
+}
+
+.readout {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.3rem 1rem;
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+
+.readout dt {
+    color: var(--fg-muted);
+}
+
+.readout dd {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    word-break: break-word;
+}
+
+.log {
+    margin: 0.5rem 0 0;
+    padding: 0.7rem 0.85rem;
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 2.4rem;
+    color: var(--fg);
+    overflow-x: auto;
+}
+
+.hint {
+    margin: 0.6rem 0 0;
+    color: var(--fg-muted);
+    font-size: 0.88rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    word-break: break-word;
+}
+
+.theme-toggle span {
+    font-size: 0.9rem;
+}

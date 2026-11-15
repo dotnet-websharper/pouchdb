@@ -1,0 +1,11 @@
+{
+  "name": "websharper.pouchdb.sample",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "esbuild": "^0.19.9"
+  },
+  "dependencies": {
+    "pouchdb": "^9.0.0"
+  }
+}

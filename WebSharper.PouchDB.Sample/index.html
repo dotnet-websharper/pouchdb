@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSharper.PouchDB — sample</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230f766e'/%3E%3Cellipse cx='8' cy='4.6' rx='4.6' ry='1.9' fill='white'/%3E%3Cpath d='M3.4 4.6v6.8c0 1 2 1.9 4.6 1.9s4.6-.9 4.6-1.9V4.6' stroke='white' stroke-width='1.2' fill='none'/%3E%3Cpath d='M3.4 8c0 1 2 1.9 4.6 1.9S12.6 9 12.6 8' stroke='white' stroke-width='1.2' fill='none'/%3E%3C/svg%3E" />
+    <script>
+        // Apply a previously chosen theme before first paint. Light is the
+        // default; the key is shared with Client.fs (themeStorageKey).
+        try {
+            var t = localStorage.getItem('websharper-pouchdb-theme');
+            if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) { }
+    </script>
+    <link rel="stylesheet" href="site.css" />
+    <!-- PouchDB is bundled from the npm package; the WebSharper head is folded in here. -->
+    <!-- ws-head -->
+</head>
+<body>
+    <header class="app-header">
+        <div class="app-titles">
+            <h1>WebSharper.PouchDB</h1>
+            <p>PouchDB 9 bindings for F# — with <a href="https://websharper.com">WebSharper</a></p>
+        </div>
+        <div class="app-actions">
+            <button class="btn theme-toggle" ws-onclick="ToggleTheme" title="Switch between the light and dark theme">
+                <span>${themeLabel}</span>
+            </button>
+            <a class="app-source" href="https://github.com/dotnet-websharper/pouchdb">Source</a>
+        </div>
+    </header>
+
+    <main class="page">
+        <p class="status">${status}</p>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Database</h2>
+                <p>
+                    <code>new Database&lt;Note&gt;("websharper-notes")</code> stores documents in
+                    IndexedDB. <code>Info()</code>, <code>Type()</code> and
+                    <code>PouchDB.Adapters</code> describe the database and the adapters
+                    compiled into the bundle.
+                </p>
+            </header>
+            <div class="toolbar">
+                <button class="btn btn-primary" ws-onclick="OpenDb">Open database</button>
+                <button class="btn" ws-onclick="Info">Info()</button>
+                <button class="btn" ws-onclick="Compact">Compact()</button>
+            </div>
+            <dl class="readout">
+                <dt>Version</dt><dd>${versionText}</dd>
+                <dt>Adapters</dt><dd>${adapterText}</dd>
+                <dt>Info</dt><dd>${infoText}</dd>
+            </dl>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Documents</h2>
+                <p>
+                    <code>Post</code> and <code>Put</code> write, <code>AllDocs</code> lists,
+                    <code>Get</code> fetches by id, <code>Remove</code> deletes, and
+                    <code>BulkDocs</code> writes several documents in one transaction.
+                </p>
+            </header>
+            <div class="toolbar">
+                <input class="input" ws-var="noteText" placeholder="Note text" />
+                <button class="btn btn-primary" ws-onclick="AddNote">Post</button>
+                <button class="btn" ws-onclick="AddThree">BulkDocs (3)</button>
+                <button class="btn" ws-onclick="Refresh">AllDocs</button>
+                <button class="btn" ws-onclick="GetFirst">Get first</button>
+                <button class="btn" ws-onclick="ToggleFirst">Toggle first</button>
+                <button class="btn" ws-onclick="DeleteFirst">Remove first</button>
+            </div>
+            <div class="toolbar">
+                <button class="btn" ws-onclick="KeysDemo">AllDocs(keys)</button>
+                <button class="btn" ws-onclick="BulkGetDemo">BulkGet</button>
+                <button class="btn" ws-onclick="RevsDiffDemo">RevsDiff</button>
+            </div>
+            <pre class="log">${docText}</pre>
+            <p class="hint">${bulkText}</p>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Attachments</h2>
+                <p>
+                    <code>PutAttachment</code> stores a <code>Blob</code> on a document and
+                    <code>GetAttachment</code> reads it back as a <code>Blob</code>.
+                </p>
+            </header>
+            <div class="toolbar">
+                <button class="btn" ws-onclick="Attach">Attach text</button>
+                <button class="btn" ws-onclick="ReadAttachment">GetAttachment</button>
+            </div>
+            <p class="hint">${attachmentText}</p>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Changes feed</h2>
+                <p>
+                    <code>Changes(options)</code> returns an event emitter that is also a
+                    promise. <code>Live = true</code> keeps the feed open until
+                    <code>Cancel()</code>.
+                </p>
+            </header>
+            <div class="toolbar">
+                <button class="btn" ws-onclick="ChangesOnce">One-shot feed</button>
+                <button class="btn btn-primary" ws-onclick="ChangesLive">Live feed</button>
+                <button class="btn" ws-onclick="CancelChanges">Cancel()</button>
+            </div>
+            <pre class="log">${changesText}</pre>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Map/reduce</h2>
+                <p>
+                    A temporary view: <code>Query(fun doc emit -&gt; emit.Call(key, value))</code>,
+                    reduced with the built-in <code>_count</code>. The map function is called
+                    with the documents (PouchDB only <code>eval</code>s it when it takes a single
+                    argument).
+                </p>
+            </header>
+            <div class="toolbar">
+                <button class="btn" ws-onclick="QueryMapOnly">Map only</button>
+                <button class="btn" ws-onclick="QueryCount">_count by state</button>
+            </div>
+            <pre class="log">${queryText}</pre>
+        </section>
+
+        <section class="card">
+            <header class="card-header">
+                <h2>Replication</h2>
+                <p>
+                    <code>Replicate.To(name)</code> and <code>Sync(name)</code> replicate to a
+                    second local database; <code>Database.Destroy()</code> drops it again.
+                </p>
+            </header>
+            <div class="toolbar">
+                <button class="btn" ws-onclick="Replicate">Replicate to backup</button>
+                <button class="btn" ws-onclick="Sync">Sync with backup</button>
+                <button class="btn" ws-onclick="DestroyBackup">Destroy backup</button>
+            </div>
+            <pre class="log">${replicationText}</pre>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="Scripts/WebSharper.PouchDB.Sample.min.js"></script>
+</body>
+</html>

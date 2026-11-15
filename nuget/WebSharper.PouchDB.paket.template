@@ -4,16 +4,18 @@ authors
     IntelliFactory
 owners
     IntelliFactory
-licenseUrl http://websharper.com/licensing
-projectUrl https://bitbucket.org/intellifactory/websharper.pouchdb
+repositoryType git
+repositoryUrl https://github.com/dotnet-websharper/pouchdb/
+licenseUrl https://github.com/dotnet-websharper/pouchdb/blob/main/LICENSE.md
+iconUrl https://github.com/dotnet-websharper/core/raw/websharper50/tools/WebSharper.png
+projectUrl https://github.com/dotnet-websharper/pouchdb
 description
-    WebSharper Extensions for PouchDB
+    WebSharper bindings for PouchDB
 tags
-    Web JavaScript F# C#
+    Web JavaScript F# C# PouchDB CouchDB IndexedDB database replication
 files
-    ../WebSharper.PouchDB/bin/Release/net461/WebSharper.PouchDB.dll ==> lib/net461
-    ../WebSharper.PouchDB/bin/Release/net461/WebSharper.PouchDB.xml ==> lib/net461
     ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.dll ==> lib/netstandard2.0
+    ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.websharper ==> lib/netstandard2.0
     ../WebSharper.PouchDB/bin/Release/netstandard2.0/WebSharper.PouchDB.xml ==> lib/netstandard2.0
 dependencies
         WebSharper ~> LOCKEDVERSION:[3]

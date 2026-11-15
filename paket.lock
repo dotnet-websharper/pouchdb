@@ -21,4 +21,4 @@ GROUP wsbuild
 
 GIT
   remote: https://github.com/dotnet-websharper/build-script
-     (7155f2cb840374092cbe8eb2c8f1399c5c97f4af)
+     (6ecf97f00d4afc53204d3277c355fc69c6f8b812)
